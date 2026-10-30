@@ -1,5 +1,5 @@
 public interface Fonts {
     String getName();
-    String getColr();
+    String getColor();
     int getSize();
 }

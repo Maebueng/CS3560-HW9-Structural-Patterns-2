@@ -1,16 +1,23 @@
 import java.util.HashMap;
+import java.util.Map;
 
 public class FontsFactory {
-    private HashMap<String, Fonts> fonts = new HashMap<>();
-    public Fonts getFonts(String type) {
-        if(fonts.containsKey(type)) {
-            return fonts.get(type);
+    private HashMap<String, Fonts> fontCache = new HashMap<>();
+
+    public Fonts getFonts(String key) {
+        // Check if font already exists in the cache
+        if(fontCache.containsKey(key)) {
+            return fontCache.get(key);
         } else {
             Fonts font = null;
-            if(type.equalsIgnoreCase("Arial-Red-12")) {
-
+            if(key.equalsIgnoreCase("Arial-Red-12")) {
+                font = new CustomFont("Arial", "Red", 12);
+            } else if (key.equalsIgnoreCase("Calibri-Blue-14")) {
+                font = new CustomFont("Calibri", "Blue", 14);
+            } else if (key.equalsIgnoreCase("Verdana-Black-16")) {
+                font = new CustomFont("Verdana", "Black", 16);
             }
-            fonts.put(type, fonts);
+            fontCache.put(key, font);
             return font;
         }
     }
