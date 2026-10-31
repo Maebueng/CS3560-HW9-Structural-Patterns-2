@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import java.util.List;
+import java.util.ArrayList;
 
 public class FontsFactoryTest {
 
@@ -34,5 +36,41 @@ public class FontsFactoryTest {
         Fonts font2 = factory.getFonts("Calibri-Blue-14");
 
         assertNotSame(font1, font2);
+    }
+
+    @Test
+    public void testTextStylingLogic() {
+        FontsFactory factory = new FontsFactory();
+
+        Fonts font1 = factory.getFonts("Arial-Red-12");
+        Fonts font2 = factory.getFonts("Calibri-Blue-14");
+        Fonts font3 = factory.getFonts("Verdana-Black-16");
+
+        String text = "Testing123456"; // 0-9:
+                     //0123456789ABC
+        List<CharacterNode> document = new ArrayList<>();
+
+        for (int i = 0; i < text.length(); i++) {
+            char c = text.charAt(i);
+            Fonts customFontStyle;
+
+            if (i <= 3) {
+                customFontStyle = font1;
+            } else if (i <= 6) {
+                customFontStyle = font2;
+            } else if (i <= 9) {
+                customFontStyle = font3;
+            } else {
+                customFontStyle = font1;
+            }
+            document.add(new CharacterNode(c, customFontStyle));
+        }
+
+        for (CharacterNode node : document) {
+            System.out.println("Char: " + node.getCharacter() +
+                    " | Font: " + node.getStyle().getName() +
+                    " | Color: " + node.getStyle().getColor() +
+                    " | Size: " + node.getStyle().getSize());
+        }
     }
 }
