@@ -16,6 +16,8 @@ public class FontsFactory {
                 font = new CustomFont("Calibri", "Blue", 14);
             } else if (key.equalsIgnoreCase("Verdana-Black-16")) {
                 font = new CustomFont("Verdana", "Black", 16);
+            } else {
+                font = new CustomFont("Arial", "Blue", 14);
             }
             fontCache.put(key, font);
             return font;
