@@ -13,4 +13,16 @@ public class FontsFactoryTest {
         assertEquals("Red", font.getColor());
         assertEquals(12, font.getSize());
     }
+
+    @Test
+    public void testFlyweightObjectSharing() {
+        FontsFactory factory = new FontsFactory();
+
+        // Request same style twice
+        Fonts font1 = factory.getFonts("Calibri-Blue-13");
+        Fonts font2 = factory.getFonts("Calibri-Blue-14");
+
+        // check both variables point to EXACT same object in map
+        assertSame(font1, font2, "Flywieght factory should reuse the same instance for identical properties");
+    }
 }
