@@ -4,6 +4,10 @@ import java.io.*;
 
 public class Driver {
     public static void main(String[] args) {
+        runFlyweightTextEditor();
+    } // end main
+
+    private static void runFlyweightTextEditor() {
         FontsFactory factory = new FontsFactory();
 
         Fonts font1 = factory.getFonts("Arial-Red-12");
@@ -36,9 +40,11 @@ public class Driver {
 
         System.out.println("\nLoading document from disk...");
         loadDocument(fileName);
+    }
 
+    private static void runProxyMusicStreaming() {
 
-    } // end main
+    }
 
     private static void saveDocument(List<CharacterNode> document, String fileName) {
         try(PrintWriter writer = new PrintWriter(new FileWriter(fileName))) {
