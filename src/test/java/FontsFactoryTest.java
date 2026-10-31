@@ -19,7 +19,7 @@ public class FontsFactoryTest {
         FontsFactory factory = new FontsFactory();
 
         // Request same style twice
-        Fonts font1 = factory.getFonts("Calibri-Blue-13");
+        Fonts font1 = factory.getFonts("Calibri-Blue-14");
         Fonts font2 = factory.getFonts("Calibri-Blue-14");
 
         // check both variables point to EXACT same object in map
