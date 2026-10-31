@@ -33,6 +33,6 @@ public class FontsFactoryTest {
         Fonts font1 = factory.getFonts("Arial-Red-12");
         Fonts font2 = factory.getFonts("Calibri-Blue-14");
 
-        assertSame(font1, font2);
+        assertNotSame(font1, font2);
     }
 }
