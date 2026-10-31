@@ -46,7 +46,7 @@ public class FontsFactoryTest {
         Fonts font2 = factory.getFonts("Calibri-Blue-14");
         Fonts font3 = factory.getFonts("Verdana-Black-16");
 
-        String text = "Testing123456"; // 0-9:
+        String text = "Testing123456"; // 0-C:
                      //0123456789ABC
         List<CharacterNode> document = new ArrayList<>();
 
@@ -56,12 +56,24 @@ public class FontsFactoryTest {
 
             if (i <= 3) {
                 customFontStyle = font1;
+                assertEquals("Arial", customFontStyle.getName());
+                assertEquals("Red", customFontStyle.getColor());
+                assertEquals(12, customFontStyle.getSize());
             } else if (i <= 6) {
                 customFontStyle = font2;
+                assertEquals("Calibri", customFontStyle.getName());
+                assertEquals("Blue", customFontStyle.getColor());
+                assertEquals(14, customFontStyle.getSize());
             } else if (i <= 9) {
                 customFontStyle = font3;
+                assertEquals("Verdana", customFontStyle.getName());
+                assertEquals("Black", customFontStyle.getColor());
+                assertEquals(16, customFontStyle.getSize());
             } else {
                 customFontStyle = font1;
+                assertEquals("Arial", customFontStyle.getName());
+                assertEquals("Red", customFontStyle.getColor());
+                assertEquals(12, customFontStyle.getSize());
             }
             document.add(new CharacterNode(c, customFontStyle));
         }
