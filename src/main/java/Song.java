@@ -1,4 +1,4 @@
-public class Song {
+public class Song implements DisplaySong {
     private String title;
     private String artist;
     private String album;
@@ -10,4 +10,11 @@ public class Song {
         this.album = album;
         this.duration = duration;
     }
+
+    public void display() {
+        System.out.println("Now playing: " + title + " | (0:01/" + duration + ") by " + artist);
+        // Now playing: SONG | ALBUM (0:01/DURATION) by ARTIST
+    }
+
+
 }
