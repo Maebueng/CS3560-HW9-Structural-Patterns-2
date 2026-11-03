@@ -4,7 +4,8 @@ import java.io.*;
 
 public class Driver {
     public static void main(String[] args) {
-        runFlyweightTextEditor();
+        //runFlyweightTextEditor();
+        runProxyMusicStreaming();
     } // end main
 
     private static void runFlyweightTextEditor() {
@@ -43,7 +44,51 @@ public class Driver {
     }
 
     private static void runProxyMusicStreaming() {
+        SongService service = new SongProxy();
 
+        System.out.println("Caching by ID");
+
+        // 1. First search for Song ID 1 (Cache Miss -> Triggers RealService delay)
+        System.out.println("-> Requesting Song ID 1 (First time)...");
+        long startTime1 = System.currentTimeMillis();
+        Song song1 = service.searchByID(1);
+        long duration1 = System.currentTimeMillis() - startTime1;
+        System.out.println("Time taken: " + duration1 + " ms");
+
+        if (song1 != null) {
+            song1.display();
+        }
+
+        System.out.println("\n----------------------------------------\n");
+
+        // 2. Second search for Song ID 1 (Cache Hit -> Instant response)
+        System.out.println("-> Requesting Song ID 1 (Second time - should be cached)...");
+        long startTime2 = System.currentTimeMillis();
+        Song song2 = service.searchByID(1);
+        long duration2 = System.currentTimeMillis() - startTime2;
+        System.out.println("Time taken: " + duration2 + " ms");
+
+        if (song2 != null) {
+            song2.display();
+        }
+
+        System.out.println("\n=== TESTING TITLE & ALBUM SEARCHES ===");
+
+        // 3. Test searching by title
+        System.out.println("-> Searching for title: 'Kirakuni'");
+        List<Song> titleResults = service.searchByTitle("Kirakuni");
+        for (Song s : titleResults) {
+            s.display();
+        }
+
+        System.out.println();
+
+        // 4. Test searching by album
+        System.out.println("-> Searching for album: 'The Now Now'");
+        List<Song> albumResults = service.searchByAlbum("The Now Now");
+        for (Song s : albumResults) {
+            s.display();
+        }
     }
 
     private static void saveDocument(List<CharacterNode> document, String fileName) {
